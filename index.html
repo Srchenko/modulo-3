@@ -120,6 +120,18 @@ function create ()
 
     //  Our player animations, turning, walking left and walking right.
     this.anims.create({
+        key: 'left_air',
+        frames: [ { key: 'pibeleft', frame: 0} ],
+        frameRate: 20
+    });
+
+    this.anims.create({
+        key: 'right_air',
+        frames: [ { key: 'piberight', frame: 0} ],
+        frameRate: 20
+    });
+
+    this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('pibeleft', { start: 0, end: 8 }),
         frameRate: 12,
@@ -396,27 +408,44 @@ function update (time, delta)
         actualizarTemporizador(tiempo_transcurrido_segundos);
     }
 
-    if (cursors.left.isDown)
+    if (cursors.left.isDown && player.body.touching.down)
     {
         player.setVelocityX(-160);
 
         player.anims.play('left', true);
     }
-    else if (cursors.right.isDown)
-    {
-        player.setVelocityX(160);
+    else{
+        if(cursors.left.isDown && !player.body.touching.down){
+            player.setVelocityX(-160);
 
-        player.anims.play('right', true);
-    }
-    else
-    {
-        player.setVelocityX(0);
+            player.anims.play('left_air', true);
+        }
+        else{
+            if(cursors.right.isDown && player.body.touching.down){
+                player.setVelocityX(160);
 
-        player.anims.play('turn');
+                player.anims.play('right', true);
+            }
+            else{
+                if(cursors.right.isDown && !player.body.touching.down){
+                    player.setVelocityX(160);
+
+                    player.anims.play('right_air', true);
+                }
+                else{
+                    player.setVelocityX(0);
+
+                    player.anims.play('turn');
+                }
+
+            }
+        }
+
     }
 
     if (cursors.up.isDown && player.body.touching.down)
     {
+        player.setBounce(0);
         player.setVelocityY(-375);
     }
 

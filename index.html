@@ -252,13 +252,17 @@ function create ()
         boton_volver.visible = false;
 
         //  texto para los créditos con partes en negrita, normal y diferentes tamaños
-        text_credits_bold = '[size=20]Juego creado por[/size]\n[size=24][b]Phaser Tutorials[/b][/size]\n\n[size=20]Juego modificado por[/size]\n[size=24][b]Tu Chenkito Rochito :)[/size][/b]\n\n[size=20]Sprite Sheet creado por[/size]\n[size=24][b]Daphne Demoet[/b][/size]';
+        let text_credits_bold = '[size=20]Juego creado por[/size]\n[size=24][b]Phaser Tutorials[/b][/size]\n\n[size=20]Juego modificado por[/size]\n[size=24][b]Tu Sergito Rochito :)[/size][/b]\n\n[size=20]Sprite Sheet creado por[/size]\n[size=24][b]Daphne Demoet[/b][/size]';
 
-        let text_credits = this.add.rexBBCodeText(0, 0, text_credits_bold, { align: 'center', fontFamily: 'Helvetica', fill: '#000', lineSpacing: 8});
+        let text_credits = this.add.rexBBCodeText(config.width / 2 , config.height / 2 - 25, text_credits_bold, { align: 'center', fontFamily: 'Helvetica', fill: '#000', lineSpacing: 8});
         text_credits.setOrigin(0.5);
-        text_credits.setX(endgame.getCenter().x);
-        text_credits.setY(endgame.getCenter().y - 25);
         text_credits.visible = false;
+
+        let text_tutorial_menu = '[size=24][b]←↑→[/b]   Moverse\n\n     [b]F[/b]     Suicidarse[/size]';
+
+        let text_tutorial = this.add.rexBBCodeText(config.width / 2 , config.height / 2 + 225, text_tutorial_menu, { align: 'center', fontFamily: 'Helvetica', fill: '#000'});
+        text_tutorial.setOrigin(0.5);
+        text_tutorial.visible = true;
 
         //  si se pone el mouse arriba de los botones, ocurre tal cosa
         //  con pointerdown es cuando se les hace click, ocurre tal cosa
@@ -274,6 +278,7 @@ function create ()
             sombra_play.visible = false;
             boton_play.visible = false;
             boton_creditos.visible = false;
+            text_tutorial.visible = false;
             this.physics.resume();
         })
 

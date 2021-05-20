@@ -178,29 +178,34 @@ class escena_juego extends Phaser.Scene {
             player.setVelocityX(-160);
 
             player.anims.play('left', true);
+            player.setSize(100, 117, true);
         }
         else{
             if(cursors.left.isDown && !player.body.touching.down){
                 player.setVelocityX(-160);
 
                 player.anims.play('left_air', true);
+                player.setSize(100, 117, true);
             }
             else{
                 if(cursors.right.isDown && player.body.touching.down){
                     player.setVelocityX(160);
 
                     player.anims.play('right', true);
+                    player.setSize(100, 117, true);
                 }
                 else{
                     if(cursors.right.isDown && !player.body.touching.down){
                         player.setVelocityX(160);
 
                         player.anims.play('right_air', true);
+                        player.setSize(100, 117, true);
                     }
                     else{
                         player.setVelocityX(0);
 
                         player.anims.play('turn');
+                        player.setSize(63, 117, true);
                     }
 
                 }

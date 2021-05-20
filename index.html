@@ -36,7 +36,6 @@ var config = {
 };
 
 var player;
-var player2;
 var stars;
 var bombs;
 var platforms;
@@ -220,7 +219,7 @@ function create ()
     endgame.alpha = 0.9;
     endgame.visible = false;
 
-    text_endgame = this.add.text(0, 0, 'Perdiste wn.\n\nPulsá\ncualquier tecla\npara reiniciar.', { align: 'center', fontFamily: 'Arial Black', fontSize: '36px', fill: '#000'});
+    text_endgame = this.add.text(0, 0, 'Perdiste.\n\nPulsá\ncualquier tecla\npara reiniciar.', { align: 'center', fontFamily: 'Arial Black', fontSize: '36px', fill: '#000'});
     text_endgame.setOrigin(0.5);
     text_endgame.setX(endgame.getCenter().x);
     text_endgame.setY(endgame.getCenter().y);
@@ -266,7 +265,7 @@ function create ()
         boton_volver.visible = false;
 
         //  texto para los créditos con partes en negrita, normal y diferentes tamaños
-        let text_credits_bold = '[size=20]Juego creado por[/size]\n[size=24][b]Phaser Tutorials[/b][/size]\n\n[size=20]Juego modificado por[/size]\n[size=24][b]Tu Sergito Rochito :)[/size][/b]\n\n[size=20]Sprite Sheet creado por[/size]\n[size=24][b]Daphne Demoet[/b][/size]';
+        let text_credits_bold = '[size=20]Juego creado por[/size]\n[size=24][b]Phaser Tutorials[/b][/size]\n\n[size=20]Juego modificado por[/size]\n[size=24][b]Sergio Bressán[/size][/b]\n\n[size=20]Sprite Sheet creado por[/size]\n[size=24][b]Daphne Demoet[/b][/size]';
 
         let text_credits = this.add.rexBBCodeText(config.width / 2 , config.height / 2 - 25, text_credits_bold, { align: 'center', fontFamily: 'Helvetica', fill: '#000', lineSpacing: 8});
         text_credits.setOrigin(0.5);

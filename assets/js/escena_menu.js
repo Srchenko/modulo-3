@@ -4,34 +4,56 @@ class escena_menu extends Phaser.Scene {
     }
 
     preload () {
+
+        //  pantalla de carga por si tardan en cargar los archivos
+        let cargando = this.add.graphics({
+            fillStyle: {
+                color: 0xff7f27
+            }
+        })
+
+        this.load.on('progress', (porcentaje) => {
+            cargando.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * porcentaje, 50);
+        })
+
+        //  un plugin para escribir mejor un texto
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
 
+        // se cargan las imágenes
         this.load.image('boton_creditos', 'assets/images/boton_creditos.png');
         this.load.image('boton_play', 'assets/images/boton_play.png');
         this.load.image('menu_principal', 'assets/images/menu_principal.png');
         this.load.image('creditos', 'assets/images/creditos.png');
         this.load.image('boton_volver', 'assets/images/boton_volver.png');
-
         this.load.image('sky', 'assets/images/sky.png');
         this.load.image('ground', 'assets/images/platform.png');
         this.load.image('ground2', 'assets/images/platform2.png');
         this.load.image('star', 'assets/images/star.png');
         this.load.image('star2', 'assets/images/star2.png');
         this.load.image('bomb', 'assets/images/bomb.png');
+        this.load.image('fondo_perdiste', 'assets/images/fondo_perdiste.png');
         this.load.image('pibefront', 'assets/images/pibefront.png');
+
+        //  se cargan las imágenes de los spritesheets y se divide cada sub-imagen formando un arreglo
         this.load.spritesheet('pibeleft', 'assets/images/pibeleft.png', { frameWidth: 122.22, frameHeight: 122});
         this.load.spritesheet('piberight', 'assets/images/piberight.png', { frameWidth: 122.22, frameHeight: 122});
+
+        //  se carga el archivo de audio
         this.load.audio('pick_coin', 'assets/audio/Pickup_Coin.wav');
-        this.load.image('fondo_perdiste', 'assets/images/fondo_perdiste.png');
+        
+        //  esto sirve para dar una pantalla de carga más fluida y no tan molesta de ver
+        for (let i = 0; i < 500; i++) {
+            this.load.image('fondo_perdiste'+i, 'assets/images/fondo_perdiste.png');
+        }
     }
 
     create () {
         //  Our player animations, turning, walking left and walking right.
         //  si el jugador está en el aire, no tiene por qué caminar, se agregan otras 2 animaciones
         this.anims.create({
-        key: 'left_air',
-        frames: [ { key: 'pibeleft', frame: 0} ],
-        frameRate: 20
+            key: 'left_air',
+            frames: [ { key: 'pibeleft', frame: 0} ],
+            frameRate: 20
         });
 
         this.anims.create({

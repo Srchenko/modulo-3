@@ -78,7 +78,10 @@ class escena_juego extends Phaser.Scene {
         //  Collide the player and the stars with the platforms
         //  esto es para que el jugador siga el movimiento de una plataforma si ese mismo jugador reposa en esa plataforma
         this.physics.add.collider(player, arreglo, this.moverConPlataforma, null, this);
+
+        //  si el jugador toca alguna plataforma, solo puede saltar desde ella y de ningún otro elemento
         this.physics.add.collider(player, platforms, this.tocaPlataforma, null, this);
+
         this.physics.add.collider(stars, platforms);
         this.physics.add.collider(stars2, platforms);
         this.physics.add.collider(bombs, platforms);
@@ -94,7 +97,7 @@ class escena_juego extends Phaser.Scene {
         text_tiempo.setOrigin(1);
 
         //  sonido cuando se junta una estrella
-        pick_coin = this.sound.add('pick_coin', {volume: 0.1});
+        pick_coin = this.sound.add('pick_coin', {volume: 0.01});
 
         //  checkea si el usuario presionó la tecla f
         this.input.keyboard.on('keydown-F', () => {
@@ -164,7 +167,7 @@ class escena_juego extends Phaser.Scene {
             tecla_f = false;
         }
 
-        //  se hace un temporizador comparando el framerate, en este caso hay 60 fps, por lo cual hay 16.66666 milisegundos, pero la función se hace para que acepte mayor framerate también
+        //  se hace un temporizador comparando el framerate, en este caso hay 60 fps, por lo cual hay 16.66666 milisegundos, pero el código sirve para que acepte mayor/menor framerate también
         //  cada vez que los frames llegan a 1000, se agrega 1 segundo
         tiempo_transcurrido_frames += delta;
         if(tiempo_transcurrido_frames >= 1000){
@@ -217,7 +220,7 @@ class escena_juego extends Phaser.Scene {
         if(arreglo.x < 550 && !cambio){
             arreglo.x += movimiento_plataforma;
             arreglo.refreshBody();
-            if(arreglo.x == 550){
+            if(arreglo.x >= 550){
                 cambio = true;
             }
         }
@@ -225,7 +228,7 @@ class escena_juego extends Phaser.Scene {
             if(arreglo.x > 250 && cambio){
                 arreglo.x -= movimiento_plataforma;
                 arreglo.refreshBody();
-                if(arreglo.x == 250){
+                if(arreglo.x <= 250){
                     cambio = false;
                 }
             }

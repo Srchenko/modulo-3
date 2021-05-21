@@ -23,7 +23,7 @@ class escena_juego extends Phaser.Scene {
         arreglo = platforms.getChildren()[1];
 
         // The player and its settings
-        player = this.physics.add.sprite(100, 450, 'pibefront').setScale(0.7);
+        player = this.physics.add.sprite(100, 450, 'pibefront').setScale(0.6);
 
         //  Player physics properties. Give the little guy a slight bounce.
         player.setBounce(0.2);
@@ -59,7 +59,7 @@ class escena_juego extends Phaser.Scene {
 
         stars2.children.iterate(function (child) {
             child.setBounceY(1);
-            child.setScale(0.08);
+            child.setScale(0.07);
         });
 
         bombs = this.physics.add.group();
@@ -131,7 +131,7 @@ class escena_juego extends Phaser.Scene {
 
             //  el reinicio del juego no es inmediato apenas aparece el cartel de derrota, dando tiempo al jugador de leer y/o darse cuenta que hay un cartel dando indicaciones
             //  se comprueban teclas presionadas y tiempo transcurrido para reiniciar el juego luego de perder
-            if (espera_un_segundo_capo < 1000){
+            if (espera_un_segundo_capo < 750){
                 tecla_reinicio = false;
             }
             else{

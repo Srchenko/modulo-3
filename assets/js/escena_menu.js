@@ -42,7 +42,7 @@ class escena_menu extends Phaser.Scene {
         this.load.audio('pick_coin', 'assets/audio/Pickup_Coin.wav');
         
         //  esto sirve para dar una pantalla de carga más fluida y no tan molesta de ver
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < 250; i++) {
             this.load.image('fondo_perdiste'+i, 'assets/images/fondo_perdiste.png');
         }
     }
@@ -166,5 +166,12 @@ class escena_menu extends Phaser.Scene {
             sombra_volver.visible = false;
             text_credits.visible = false;
         })
+
+        //  konami code para abrir un video super serio para reflexionar de la vida en youtube
+        this.input.keyboard.createCombo('CHENKITO');
+
+        this.input.keyboard.on('keycombomatch', () => {
+            window.open('https://www.youtube.com/watch?v=V51OJr0ee6E');
+        });
     }
 }

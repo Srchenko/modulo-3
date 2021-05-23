@@ -99,6 +99,9 @@ class escena_juego extends Phaser.Scene {
         //  sonido cuando se junta una estrella
         pick_coin = this.sound.add('pick_coin', {volume: 0.01});
 
+        //  sonido cuando el personaje se suicida
+        sonido_escopeta = this.sound.add('sonido_escopeta', {volume: 0.4});
+
         //  checkea si el usuario presionó la tecla f
         this.input.keyboard.on('keydown-F', () => {
             tecla_f = true;
@@ -165,6 +168,16 @@ class escena_juego extends Phaser.Scene {
         if(tecla_f){
             this.gameOverFunction();
             tecla_f = false;
+            if(player.x <= 75){
+                player.setOrigin(0, 1)
+                player.angle = 90;
+            }
+            else{
+                player.setOrigin(1, 1);
+                player.angle = -90;
+            }
+            sonido_escopeta.play();
+            return;
         }
 
         //  se hace un temporizador comparando el framerate, en este caso hay 60 fps, por lo cual hay 16.66666 milisegundos, pero el código sirve para que acepte mayor/menor framerate también

@@ -38,8 +38,9 @@ class escena_menu extends Phaser.Scene {
         this.load.spritesheet('pibeleft', 'assets/images/pibeleft.png', { frameWidth: 122.22, frameHeight: 122});
         this.load.spritesheet('piberight', 'assets/images/piberight.png', { frameWidth: 122.22, frameHeight: 122});
 
-        //  se carga el archivo de audio
-        this.load.audio('pick_coin', 'assets/audio/Pickup_Coin.wav');
+        //  se cargan los archivos de audio
+        this.load.audio('pick_coin', 'assets/audio/Pickup_Coin.mp3');
+        this.load.audio('sonido_escopeta', 'assets/audio/sonido_escopeta.mp3');
         
         //  esto sirve para dar una pantalla de carga más fluida y no tan molesta de ver
         for (let i = 0; i < 250; i++) {

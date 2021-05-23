@@ -44,5 +44,6 @@ var segundos = 0;
 var espera_un_segundo_capo = 0;
 
 var pick_coin;
+var sonido_escopeta;
 
 var game = new Phaser.Game(config);

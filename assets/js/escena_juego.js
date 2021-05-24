@@ -167,6 +167,7 @@ class escena_juego extends Phaser.Scene {
 
         if(tecla_f){
             this.gameOverFunction();
+            player.anims.play('turn');
             tecla_f = false;
             if(player.x <= 75){
                 player.setOrigin(0, 1)
@@ -343,8 +344,8 @@ class escena_juego extends Phaser.Scene {
         this.physics.pause();
     
         player.setTint(0xff0000);
-    
-        player.anims.play('turn');
+
+        player.anims.stop();
 
         endgame.visible = true;
         text_endgame.visible = true;
